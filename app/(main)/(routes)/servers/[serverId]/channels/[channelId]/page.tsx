@@ -2,8 +2,11 @@ import { redirectToSignIn } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
 
 import { ChatHeader } from "@/components/chat/chat-header";
+import { ChatInput } from "@/components/chat/chat-input";
+import { ChatMessages } from "@/components/chat/chat-messages";
 import { currentProfile } from "@/lib/current-profile";
 import { db } from "@/lib/prismaDb";
+import { ChannelType } from "@prisma/client";
 
 interface ChannelIdPageProps {
   params: {
@@ -43,7 +46,7 @@ const ChannelIdPage = async ({ params }: ChannelIdPageProps) => {
         serverId={channel.serverId}
         type="channel"
       />
-      {/* {channel.type === ChannelType.TEXT && (
+      {channel.type === ChannelType.TEXT && (
         <>
           <ChatMessages
             member={member}
@@ -62,14 +65,14 @@ const ChannelIdPage = async ({ params }: ChannelIdPageProps) => {
           <ChatInput
             name={channel.name}
             type="channel"
-            apiUrl="/api/socket/messages"
+            apiUrl="/api/message"
             query={{
               channelId: channel.id,
               serverId: channel.serverId,
             }}
           />
         </>
-      )} */}
+      )}
       {/* {channel.type === ChannelType.AUDIO && (
         <MediaRoom
           chatId={channel.id}

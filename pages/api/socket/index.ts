@@ -2,7 +2,7 @@ import {
   ClientToServerEvents,
   NextApiResponseWithSocket,
   ServerToClientEvents,
-} from "./../../types";
+} from "../../../types";
 
 import { NextApiRequest } from "next";
 import { Server } from "socket.io";
